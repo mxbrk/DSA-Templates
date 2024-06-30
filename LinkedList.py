@@ -70,20 +70,58 @@ class LinkedList:
         temp = self.head
         for _ in range(index):
               temp = temp.next
-        return temp.value
+        return temp
+    
+    def set_Item_Value(self, index, value):
+        temp = self.get_Item(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
+    def insert_Item(self, index, value):
+         if index < 0 or index > self.length:
+              return False
+         if index == 0:
+              return self.prepend_Item(value)
+         if index == self.length:
+              return self.append_Item(value)
+         new_node = Node(value)
+         temp = self.get(index - 1)
+         new_node.next = temp.next
+         temp.next  = new_node
+         self.length += 1
+         return True
+
+    def remove_Item(self, index):
+         if index < 0 or index > self.length:
+              return None
+         if index == 0:
+              return self.pop_first_Item()
+         if index == self.length - 1:
+              return self.pop_Item()
+         prev = self.get_Item(index -1)
+         temp = prev.next
+         prev.next = temp.next
+         temp.next = None
+         self.length -= 1
+         return temp
+
+         
 
 
-
-main_LL = LinkedList(0)
-
-main_LL.append_Item(1)
+main_LL = LinkedList(1)
 main_LL.append_Item(2)
+main_LL.append_Item(3)
 
-main_LL.get_Item(1)
-#main_LL.pop_Item()
+#print(main_LL.get_Item(2))
 
 #main_LL.prepend_Item(8)
 
 #main_LL.pop_first_Item()
 
-#main_LL.print_list()
+#main_LL.remove_Item(2)
+#main_LL.set_Item_Value(1,9)
+
+#main_LL.insert_Item(0,9)
+main_LL.print_list()
