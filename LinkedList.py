@@ -27,21 +27,21 @@ class LinkedList:
         return True
     
     def pop_Item(self):
-        if self.head is None:
-                return None
+        if self.length == 0:
+            return None
         temp = self.head
         pre = self.head
-        while(temp.next is not None):
-                pre = temp
-                temp = temp.next
+        while(temp.next):
+            pre = temp
+            temp = temp.next
         self.tail = pre
         self.tail.next = None
         self.length -= 1
         if self.length == 0:
-                self.head = None
-                self.tail = None
-                return temp.value
-
+            self.head = None
+            self.tail = None
+        return temp
+    
     def prepend_Item(self, value):
         new_node = Node(value)
         if self.length == 0:
@@ -87,7 +87,7 @@ class LinkedList:
          if index == self.length:
               return self.append_Item(value)
          new_node = Node(value)
-         temp = self.get(index - 1)
+         temp = self.get_Item(index - 1)
          new_node.next = temp.next
          temp.next  = new_node
          self.length += 1
@@ -106,22 +106,18 @@ class LinkedList:
          temp.next = None
          self.length -= 1
          return temp
-
-         
-
-
+    
+    def reverse_List(self):
+     temp = self.head
+     self.head = self.tail
+     self.tail = temp
+     after = temp.next
+     before = None
+     for _ in range(self.length):
+          after = temp.next
+          temp.next = before
+          before = temp
+          temp = after
+          
 main_LL = LinkedList(1)
-main_LL.append_Item(2)
-main_LL.append_Item(3)
-
-#print(main_LL.get_Item(2))
-
-#main_LL.prepend_Item(8)
-
-#main_LL.pop_first_Item()
-
-#main_LL.remove_Item(2)
-#main_LL.set_Item_Value(1,9)
-
-#main_LL.insert_Item(0,9)
 main_LL.print_list()
