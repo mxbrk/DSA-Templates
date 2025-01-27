@@ -66,18 +66,22 @@ class DoubleLinkedList:
             temp.next = None
         self.length -= 1
         return temp
-
+    
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        if index < self.length/2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1, index, -1):
+                temp = temp.prev  
+        return temp
+    
 main_DLL = DoubleLinkedList(1)
 main_DLL.append(2)
 main_DLL.append(3)
 main_DLL.print_list()
 print('\n')
-
-main_DLL.popFirst()
-main_DLL.print_list()
-print('\n')
-
-main_DLL.popFirst()
-main_DLL.print_list()
-print('\n')
-
