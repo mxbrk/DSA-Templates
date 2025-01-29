@@ -45,6 +45,3 @@ mainTree.insert(2)
 mainTree.insert(1)
 mainTree.insert(3)
 
-print(mainTree.root.value)
-print(mainTree.root.left.value)
-print(mainTree.root.right.value)
