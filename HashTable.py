@@ -43,6 +43,7 @@ class HashTable:
                 return True
         return False
 
+
 mainHashTable = HashTable()
 
 mainHashTable.set_item('item1', 45)
